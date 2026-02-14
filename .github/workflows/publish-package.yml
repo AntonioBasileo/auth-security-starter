@@ -58,7 +58,7 @@ jobs:
                   </repository>
           
                   <repository>
-                    <id>github</id>
+                    <id>auth-security-core</id>
                     <url>https://maven.pkg.github.com/AntonioBasileo/auth-security-core</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
