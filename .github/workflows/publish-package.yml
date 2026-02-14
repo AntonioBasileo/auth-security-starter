@@ -83,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub Packages
-        run: mvn deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
+        run: mvn deploy -DskipTests -DaltDeploymentRepository=github::https://maven.pkg.github.com/${{ github.repository }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
