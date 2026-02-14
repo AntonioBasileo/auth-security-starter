@@ -33,9 +33,10 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/AntonioBasileo/auth-security-core</url>
+            <url>https://maven.pkg.github.com/AntonioBasileo/auth-security-starter</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
