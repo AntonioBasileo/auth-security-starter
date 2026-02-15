@@ -4,7 +4,7 @@ import it.auth.security.core.dto.LoginRequestDTO;
 import it.auth.security.core.dto.RegisterRequestDTO;
 import it.auth.security.core.entity.AppUser;
 import it.auth.security.core.utility.JwtUtil;
-import it.auth.security.starter.repository.UserRepository;
+import it.auth.security.starter.repository.UserRepositoryProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,9 +38,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AuthService {
 
+    private final UserRepositoryProvider userRepositoryProvider;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
 
@@ -74,7 +74,7 @@ public class AuthService {
         newUser.setUsername(userData.getUsername());
         newUser.setPassword(passwordEncoder.encode(userData.getPassword()));
         newUser.setRoles(Set.of(userData.getRole()));
-        userRepository.save(newUser);
+        userRepositoryProvider.save(newUser);
 
         return "Registrazione avvenuta con successo";
     }
@@ -92,7 +92,7 @@ public class AuthService {
 
         String username = authentication.getName();
 
-        return userRepository.findByUsername(username)
+        return userRepositoryProvider.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Utente con username %s non trovato", username)));
     }
 }

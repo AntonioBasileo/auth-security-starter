@@ -2,7 +2,7 @@ package it.auth.security.starter.config;
 
 import it.auth.security.core.entity.AppUser;
 import it.auth.security.core.utility.JwtUtil;
-import it.auth.security.starter.repository.UserRepository;
+import it.auth.security.starter.repository.UserRepositoryProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
-    private final UserRepository userRepository;
+    private final UserRepositoryProvider userRepositoryProvider;
 
 
     /**
@@ -75,7 +75,7 @@ public class JwtFilter extends OncePerRequestFilter {
             if (jwtUtil.validateToken(token)) {
                 String username = jwtUtil.extractUsername(token);
 
-                AppUser user = userRepository.findByUsername(username)
+                AppUser user = userRepositoryProvider.findByUsername(username)
                         .orElseThrow(() -> new UsernameNotFoundException("Invalid token. Username not found"));
 
                 Set<String> rolesClaim = jwtUtil.extractRoles(token);

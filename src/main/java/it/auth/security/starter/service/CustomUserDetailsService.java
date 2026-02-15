@@ -1,7 +1,7 @@
 package it.auth.security.starter.service;
 
 import it.auth.security.core.entity.AppUser;
-import it.auth.security.starter.repository.UserRepository;
+import it.auth.security.starter.repository.UserRepositoryProvider;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryProvider userRepositoryProvider;
 
 
     /**
@@ -44,7 +44,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public @NonNull UserDetails loadUserByUsername(@NonNull String username) throws UsernameNotFoundException {
-        AppUser appUser = userRepository.findByUsername(username)
+        AppUser appUser = userRepositoryProvider.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Utente con username %s non trovato", username)));
 
         return User.builder()
