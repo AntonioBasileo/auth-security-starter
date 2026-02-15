@@ -39,7 +39,7 @@ jobs:
                                         https://maven.apache.org/xsd/settings-1.0.0.xsd">
             <servers>
               <server>
-                <id>auth-security-core</id>
+                <id>github</id>
                 <username>\${{ github.actor }}</username>
                 <password>\${{ secrets.GITHUB_TOKEN }}</password>
               </server>
@@ -58,7 +58,7 @@ jobs:
                   </repository>
           
                   <repository>
-                    <id>auth-security-core</id>
+                    <id>github</id>
                     <url>https://maven.pkg.github.com/AntonioBasileo/auth-security-core</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
