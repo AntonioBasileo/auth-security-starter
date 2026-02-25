@@ -69,14 +69,14 @@ public class AuthService {
      * @return messaggio di conferma della registrazione
      * @throws IllegalArgumentException se lo username è già esistente
      */
-    public String registerUser(RegisterRequestDTO userData) {
+    public Long registerUser(RegisterRequestDTO userData) {
         AppUser newUser = new AppUser();
         newUser.setUsername(userData.getUsername());
         newUser.setPassword(passwordEncoder.encode(userData.getPassword()));
         newUser.setRoles(Set.of(userData.getRole()));
         userRepositoryProvider.save(newUser);
 
-        return "Registrazione avvenuta con successo";
+        return newUser.getId();
     }
 
     /**

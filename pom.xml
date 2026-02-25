@@ -10,7 +10,7 @@
     </parent>
     <groupId>it.auth.security</groupId>
     <artifactId>auth-security-starter</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <name>auth-security-starter</name>
     <description>auth-security-starter</description>
 
